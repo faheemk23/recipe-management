@@ -1,0 +1,13 @@
+.recipes-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  min-height: 380px;
+}
+
+.add-recipe-icon {
+  color: rgba(0, 0, 0, 0.3);
+  font-size: xx-large;
+  display: flex;
+  align-items: center;
+}
