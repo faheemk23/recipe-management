@@ -8,18 +8,24 @@ import "./App.css";
 import { NavBar } from "./components/NavBar/NavBar";
 import { RecipesContext } from "./contexts/RecipesContext";
 import { Error } from "./pages/Error/Error";
+import { Login } from "./pages/Login/Login";
 
 function App() {
-  const { loading } = useContext(RecipesContext);
+  const { loading, loggedIn } = useContext(RecipesContext);
 
   return (
     <div className="App">
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/recipedetail/:recipeId" element={<RecipeDetail />} />
-        <Route path="*" element={<Error />} />
-      </Routes>
+      {loggedIn && (
+        <>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/recipedetail/:recipeId" element={<RecipeDetail />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </>
+      )}
+      {!loggedIn && <Login />}
       {!loading && <Toaster />}
     </div>
   );
