@@ -7,7 +7,7 @@ import "./RecipeCard.css";
 
 export function RecipeCard({ recipe }) {
   const [showEditRecipeModal, setShowEditRecipeModal] = useState(false);
-  const { id, title, description, image } = recipe;
+  const { id, title, description, image } = recipe ?? {};
 
   const { recipesDispatch } = useContext(RecipesContext);
   const handleBtnDelete = () => {
@@ -27,18 +27,18 @@ export function RecipeCard({ recipe }) {
         height="220px"
         width="200px"
       />
-      <h3>{title}</h3>
-      <div>
+      <h3 className="title">{title}</h3>
+      <div className="description">
         <i> {description}.</i>
       </div>
-      <div>
+      <div className="flex-space-between">
         <strong>Ingredients: </strong>
 
         <Link className="link" to={`/recipedetail/${id}`}>
           View Recipe <i className="fa-solid fa-chevron-right"></i>
         </Link>
       </div>
-      <div>
+      <div className="flex-space-between">
         <strong>Instructions: </strong>
 
         <Link className="link" to={`/recipedetail/${id}`}>

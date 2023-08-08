@@ -9,6 +9,9 @@
 
 .recipe-image {
   object-fit: cover;
+  max-height: 220px;
+  max-width: 200px;
+  overflow: hidden;
 }
 
 .top-right {
@@ -33,4 +36,17 @@
 
 .recipe-card .link:hover {
   text-decoration: underline;
+}
+
+.recipe-card .title {
+  margin: 0.8rem 0;
+}
+
+.recipe-card .description {
+  margin: 0.3rem 0;
+}
+
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
 }

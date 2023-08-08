@@ -1,13 +1,20 @@
 .home-page {
-  padding: 2rem;
+  /* padding: 2rem 4rem; */
+  max-width: 80%;
+  margin: auto;
+}
+
+.app-main-heading {
+  text-align: center;
+  margin: 0.5rem 0 2rem 0;
+  color: var(--primary-color);
 }
 
 .recipes-container {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
-  /* min-height: 380px; */
-  margin-top: 2rem;
+  margin: 2rem 0;
 }
 
 .add-recipe-icon {
@@ -15,4 +22,10 @@
   font-size: xx-large;
   display: flex;
   align-items: center;
+}
+
+@media screen and (max-width: 640px) {
+  .recipes-container {
+    justify-content: center;
+  }
 }
