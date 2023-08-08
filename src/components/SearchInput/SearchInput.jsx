@@ -17,7 +17,7 @@ export default function SearchInput() {
         className="search-bar"
         type="search"
         id="search-recipes"
-        placeholder="Search by title/ingredients"
+        placeholder="Search by title"
         onChange={(e) => handleSearchInput(e)}
       />
     </article>

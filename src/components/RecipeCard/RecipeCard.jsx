@@ -5,7 +5,8 @@ import { RecipesContext } from "../../contexts/RecipesContext";
 import "./RecipeCard.css";
 
 export function RecipeCard({ recipe }) {
-  const { id, name, cuisine, image } = recipe;
+  const { id, name, description, image } = recipe;
+
   const { recipesDispatch } = useContext(RecipesContext);
   const handleBtnDelete = () => {
     recipesDispatch({ type: "delete-recipe", payload: recipe.id });
@@ -21,15 +22,19 @@ export function RecipeCard({ recipe }) {
         width="200px"
       />
       <h3>{name}</h3>
-      <div>Cuisine Type: {cuisine}</div>
       <div>
-        Ingredients:{" "}
+        <i> {description}.</i>
+      </div>
+      <div>
+        <strong>Ingredients: </strong>
+
         <Link className="link" to={`/detail/${id}`}>
           View Recipe <i className="fa-solid fa-chevron-right"></i>
         </Link>
       </div>
       <div>
-        Instructions:{" "}
+        <strong>Instructions: </strong>
+
         <Link className="link" to={`/detail/${id}`}>
           View Recipe <i className="fa-solid fa-chevron-right"></i>
         </Link>

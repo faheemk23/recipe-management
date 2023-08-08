@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { NavLink, Route, Routes } from "react-router-dom";
 
 import "./App.css";
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/recipedetail" element={<RecipeDetail />} />
       </Routes>
+      <Toaster />
     </div>
   );
 }
