@@ -12,7 +12,7 @@ function App() {
       <NavLink to="/recipedetail">detail</NavLink>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/recipedetail" element={<RecipeDetail />} />
+        <Route path="/recipedetail/:recipeId" element={<RecipeDetail />} />
       </Routes>
       <Toaster />
     </div>

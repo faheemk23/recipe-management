@@ -1,11 +1,8 @@
-import { useState } from "react";
 import { debouncer } from "../../utilities/miscUtilities";
 import "./SearchInput.css";
 
-export default function SearchInput() {
-  const [searchInput, setSearchInput] = useState("");
-
-  const debouncedSetSearchInput = debouncer(setSearchInput, 500);
+export default function SearchInput({ setSearchInput }) {
+  const debouncedSetSearchInput = debouncer(setSearchInput, 400);
 
   const handleSearchInput = (e) => {
     debouncedSetSearchInput(e.target.value);
@@ -17,7 +14,7 @@ export default function SearchInput() {
         className="search-bar"
         type="search"
         id="search-recipes"
-        placeholder="Search by title"
+        placeholder="Search by title/ingredients"
         onChange={(e) => handleSearchInput(e)}
       />
     </article>

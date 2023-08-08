@@ -8,7 +8,7 @@ export const fakeFetch = (url) => {
           data: [
             {
               id: "1",
-              name: "Spaghetti Bolognese",
+              title: "Spaghetti Bolognese",
               ingredients: [
                 "500g ground beef",
                 "1 onion, diced",
@@ -36,7 +36,7 @@ export const fakeFetch = (url) => {
             },
             {
               id: "2",
-              name: "Chicken Tikka Masala",
+              title: "Chicken Tikka Masala",
               ingredients: [
                 "500g chicken breast, cut into cubes",
                 "1 cup plain yogurt",
@@ -71,7 +71,7 @@ export const fakeFetch = (url) => {
             },
             {
               id: "3",
-              name: "Caesar Salad",
+              title: "Caesar Salad",
               ingredients: [
                 "1 head of romaine lettuce, chopped",
                 "1 cup croutons",

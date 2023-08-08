@@ -6,16 +6,30 @@ import { RecipesContext } from "../../contexts/RecipesContext";
 import "./Home.css";
 
 export function Home() {
+  const [searchInput, setSearchInput] = useState("");
   const [showRecipeInput, setShowRecipeInput] = useState(false);
 
   const { recipesState } = useContext(RecipesContext);
 
+  let filteredRecipes = recipesState;
+
+  const match = (strToSearchIn, strToSearch) =>
+    strToSearchIn.toLowerCase().includes(strToSearch.toLowerCase());
+
+  if (searchInput !== "") {
+    filteredRecipes = filteredRecipes.filter(
+      ({ title, ingredients }) =>
+        match(title, searchInput) ||
+        ingredients.some((ingredient) => match(ingredient, searchInput))
+    );
+  }
+
   return (
     <div>
       Home
-      <SearchInput />
+      <SearchInput setSearchInput={setSearchInput} />
       <section className="recipes-container">
-        {recipesState?.map((recipe) => (
+        {filteredRecipes?.map((recipe) => (
           <RecipeCard key={recipe.id} recipe={recipe} />
         ))}
         <div className="add-recipe-icon">
