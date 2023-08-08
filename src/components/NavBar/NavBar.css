@@ -1,0 +1,17 @@
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background-color: white;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-bar h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}

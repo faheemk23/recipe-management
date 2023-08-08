@@ -1,0 +1,28 @@
+.btn {
+  border: none;
+  padding: 0.3rem 0.8rem;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.auth-name {
+  font-size: 1.1rem;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.bold {
+  color: black;
+  font-size: larger;
+}

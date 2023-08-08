@@ -1,7 +1,8 @@
 import "./RecipeDetailCard.css";
 
 export function RecipeDetailCard({ recipe }) {
-  const { id, title, ingredients, instructions, description, image } = recipe;
+  const { id, title, ingredients, instructions, description, image } =
+    recipe ?? {};
 
   return (
     <div>
@@ -22,12 +23,12 @@ export function RecipeDetailCard({ recipe }) {
           <h3>{description}</h3>
           <div>
             <strong>Ingredients : </strong>
-            {ingredients.join(", ")}
+            {ingredients?.join(", ")}
           </div>
           <div>
             <h4>Instructions</h4>
             <div>
-              {instructions.map((instruction, index) => (
+              {instructions?.map((instruction, index) => (
                 <div key={instruction}>
                   {index + 1}) {instruction}
                 </div>

@@ -1,5 +1,6 @@
-.recipe-detail-left-arrow {
-  font-size: 2rem;
+.recipe-detail-link {
+  font-size: 1.5rem;
   color: black;
   padding: 1rem;
+  text-decoration: none;
 }
