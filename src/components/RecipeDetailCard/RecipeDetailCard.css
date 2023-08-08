@@ -13,7 +13,8 @@
 
 .recipe-detail-image {
   object-fit: cover;
-  margin-right: 1rem;
+  margin-right: 2rem;
+  align-self: center;
 }
 
 @media screen and (max-width: 750px) {
@@ -23,5 +24,6 @@
 
   .recipe-detail-image {
     width: 100%;
+    margin-right: 0;
   }
 }

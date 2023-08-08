@@ -13,7 +13,9 @@ export function RecipeDetail() {
 
   return (
     <div>
-      <Link to="/">Back home</Link>
+      <Link className="recipe-detail-left-arrow" to="/">
+        <i class="fa-solid fa-arrow-left-long"></i>
+      </Link>
       <RecipeDetailCard recipe={recipe} />
     </div>
   );

@@ -25,9 +25,16 @@ export function Home() {
   }
 
   return (
-    <div>
-      Home
+    <div className="home-page">
       <SearchInput setSearchInput={setSearchInput} />
+      <h1>All Recipes :</h1>
+      {filteredRecipes.length === 0 && (
+        <h2>
+          {searchInput === ""
+            ? "No recipes to show. Please add some recipes!"
+            : "Sorry, no recipes found !"}
+        </h2>
+      )}
       <section className="recipes-container">
         {filteredRecipes?.map((recipe) => (
           <RecipeCard key={recipe.id} recipe={recipe} />
