@@ -1,3 +1,4 @@
+import { Auth0Provider } from "@auth0/auth0-react";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -12,7 +13,15 @@ root.render(
   <React.StrictMode>
     <Router>
       <RecipesProvider>
-        <App />
+        <Auth0Provider
+          domain="dev-td70nt1jt7xg0hzw.us.auth0.com"
+          clientId="CDNFGW7YTS2s5HOz8pthhGP48s2MBQjU"
+          authorizationParams={{
+            redirect_uri: "https://recipe-management-six.vercel.app/",
+          }}
+        >
+          <App />
+        </Auth0Provider>
       </RecipesProvider>
     </Router>
   </React.StrictMode>
