@@ -9,7 +9,11 @@ export function RecipeDetailCard({ recipe }) {
       <div className="recipe-detail-info">
         <img
           className="recipe-detail-image"
-          src={image}
+          src={
+            image
+              ? image
+              : "https://res.cloudinary.com/dlzwbrjjs/image/upload/v1691516455/placeholder-rgb-color-icon-vector-32173552_vbbhay.jpg"
+          }
           alt="recipe"
           height="400px"
           width="400px"
