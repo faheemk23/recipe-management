@@ -1,4 +1,6 @@
 import { useContext, useState } from "react";
+
+import { Loader } from "../../components/Loader/Loader";
 import { RecipeCard } from "../../components/RecipeCard/RecipeCard";
 import { RecipeInput } from "../../components/RecipeInput/RecipeInput";
 import SearchInput from "../../components/SearchInput/SearchInput";
@@ -9,7 +11,7 @@ export function Home() {
   const [searchInput, setSearchInput] = useState("");
   const [showRecipeInput, setShowRecipeInput] = useState(false);
 
-  const { recipesState } = useContext(RecipesContext);
+  const { recipesState, loading } = useContext(RecipesContext);
 
   let filteredRecipes = recipesState;
 
@@ -26,31 +28,34 @@ export function Home() {
 
   return (
     <div className="home-page">
-      <h1 className="app-main-heading">
-        CulinaryChronicles: Your Recipe Oasis
-      </h1>
       <SearchInput setSearchInput={setSearchInput} />
       <h2>All Recipes :</h2>
-      {filteredRecipes.length === 0 && (
-        <h3>
-          {searchInput === ""
-            ? "No recipes to show. Please add some recipes!"
-            : "Sorry, no recipes found !"}
-        </h3>
-      )}
-      <section className="recipes-container">
-        {filteredRecipes?.map((recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
-        ))}
-        <div className="add-recipe-icon">
-          <i
-            className="fa-solid fa-circle-plus pointer"
-            onClick={() => setShowRecipeInput(true)}
-          ></i>
-        </div>
-      </section>
-      {showRecipeInput && (
-        <RecipeInput setShowRecipeInput={setShowRecipeInput} />
+
+      {loading && <Loader />}
+      {!loading && (
+        <>
+          {filteredRecipes.length === 0 && (
+            <h3>
+              {searchInput === ""
+                ? "No recipes to show. Please add some recipes!"
+                : "Sorry, no recipes found !"}
+            </h3>
+          )}
+          <section className="recipes-container">
+            {filteredRecipes?.map((recipe) => (
+              <RecipeCard key={recipe.id} recipe={recipe} />
+            ))}
+            <div className="add-recipe-icon">
+              <i
+                className="fa-solid fa-circle-plus pointer"
+                onClick={() => setShowRecipeInput(true)}
+              ></i>
+            </div>
+          </section>
+          {showRecipeInput && (
+            <RecipeInput setShowRecipeInput={setShowRecipeInput} />
+          )}
+        </>
       )}
     </div>
   );

@@ -30,8 +30,7 @@ export function RecipeInput({
     image: "",
   });
 
-  const { id, title, description, ingredients, instructions, image } =
-    userInput;
+  const { title, description, ingredients, instructions, image } = userInput;
 
   const handleInputFields = (e) => {
     const field = e.target.id;
@@ -60,8 +59,8 @@ export function RecipeInput({
             }),
           });
           toast.success("Image uploaded successfully!");
-        } catch (e) {
-          console.error(e.message);
+        } catch (error) {
+          console.error(error.message);
           toast.error("Image upload failed!");
         }
       } else {
@@ -90,8 +89,8 @@ export function RecipeInput({
             },
           });
           toast.success("Image uploaded successfully!");
-        } catch (e) {
-          console.error(e.message);
+        } catch (error) {
+          console.error(error.message);
           toast.error("Image upload failed!");
         }
       } else {
