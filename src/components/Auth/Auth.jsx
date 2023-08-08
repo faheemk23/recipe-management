@@ -1,9 +1,13 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { useContext } from "react";
+import { RecipesContext } from "../../contexts/RecipesContext";
 import "./Auth.css";
 
 export function Auth() {
   const { isLoading, isAuthenticated, error, user, loginWithRedirect, logout } =
     useAuth0();
+
+  const { setLoggedIn } = useContext(RecipesContext);
 
   if (isLoading) {
     return <div></div>;
@@ -14,6 +18,7 @@ export function Auth() {
   }
 
   if (isAuthenticated) {
+    setLoggedIn(true);
     return (
       <div>
         <span className="auth-name">
@@ -31,6 +36,7 @@ export function Auth() {
       </div>
     );
   } else {
+    setLoggedIn(false);
     return (
       <button className="btn btn-primary" onClick={() => loginWithRedirect()}>
         Log in
