@@ -26,14 +26,17 @@ export function Home() {
 
   return (
     <div className="home-page">
+      <h1 className="app-main-heading">
+        CulinaryChronicles: Your Recipe Oasis
+      </h1>
       <SearchInput setSearchInput={setSearchInput} />
-      <h1>All Recipes :</h1>
+      <h2>All Recipes :</h2>
       {filteredRecipes.length === 0 && (
-        <h2>
+        <h3>
           {searchInput === ""
             ? "No recipes to show. Please add some recipes!"
             : "Sorry, no recipes found !"}
-        </h2>
+        </h3>
       )}
       <section className="recipes-container">
         {filteredRecipes?.map((recipe) => (

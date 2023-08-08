@@ -3,9 +3,11 @@ import { v4 as uuid } from "uuid";
 
 import { RecipesContext } from "../../contexts/RecipesContext";
 
+import { toast } from "react-hot-toast";
 import {
   joinIngredientsAndInstructions,
   splitIngredientsAndInstructions,
+  uploadImage,
   validateFields,
 } from "../../utilities/miscUtilities";
 import "./RecipeInput.css";
@@ -17,6 +19,7 @@ export function RecipeInput({
   inEdit,
 }) {
   const { recipesDispatch } = useContext(RecipesContext);
+  const [imageFile, setImageFile] = useState(null);
 
   const [userInput, setUserInput] = useState({
     id: uuid(),
@@ -35,24 +38,71 @@ export function RecipeInput({
     setUserInput((prev) => ({ ...prev, [field]: e.target.value }));
   };
 
-  const handleBtnSave = (e) => {
-    if (validateFields(userInput)) {
-      recipesDispatch({
-        type: "add-recipe",
-        payload: splitIngredientsAndInstructions(userInput),
-      });
+  const handleImageInput = (e) => {
+    if (e.target.files[0].size > 5000000) {
+      toast.error("Image size should be less than 5MB");
+    } else {
+      setImageFile(e.target.files[0]);
     }
   };
 
-  const handleBtnEdit = (e) => {
+  const handleBtnSave = async (e) => {
     if (validateFields(userInput)) {
-      recipesDispatch({
-        type: "edit-recipe",
-        payload: {
-          id: recipe.id,
-          editedRecipe: splitIngredientsAndInstructions(userInput),
-        },
-      });
+      if (imageFile) {
+        try {
+          toast("Uploading image!");
+          const res = await uploadImage(imageFile);
+          recipesDispatch({
+            type: "add-recipe",
+            payload: splitIngredientsAndInstructions({
+              ...userInput,
+              image: res.secure_url,
+            }),
+          });
+          toast.success("Image uploaded successfully!");
+        } catch (e) {
+          console.error(e.message);
+          toast.error("Image upload failed!");
+        }
+      } else {
+        recipesDispatch({
+          type: "add-recipe",
+          payload: splitIngredientsAndInstructions(userInput),
+        });
+      }
+    }
+  };
+
+  const handleBtnEdit = async (e) => {
+    if (validateFields(userInput)) {
+      if (imageFile) {
+        try {
+          toast("Uploading image!");
+          const res = await uploadImage(imageFile);
+          recipesDispatch({
+            type: "edit-recipe",
+            payload: {
+              id: recipe.id,
+              editedRecipe: splitIngredientsAndInstructions({
+                ...userInput,
+                image: res.secure_url,
+              }),
+            },
+          });
+          toast.success("Image uploaded successfully!");
+        } catch (e) {
+          console.error(e.message);
+          toast.error("Image upload failed!");
+        }
+      } else {
+        recipesDispatch({
+          type: "edit-recipe",
+          payload: {
+            id: recipe.id,
+            editedRecipe: splitIngredientsAndInstructions(userInput),
+          },
+        });
+      }
     }
   };
 
@@ -76,6 +126,7 @@ export function RecipeInput({
   return (
     <div className="modal-container">
       <form className="recipe-input" onSubmit={handleFormSubmit}>
+        <h2 className="heading">{inEdit ? "Edit recipe" : "Add recipe"}</h2>
         <label htmlFor="name">Title</label>
         <input
           type="text"
@@ -100,7 +151,7 @@ export function RecipeInput({
           rows="5"
           onChange={handleInputFields}
         ></textarea>
-        <div>Note: Please provide one ingredient on each line</div>
+        <div>Note: Press Enter after typing each ingredient.</div>
         <label htmlFor="instructions">Instructions</label>
         <textarea
           name="instructions"
@@ -110,11 +161,16 @@ export function RecipeInput({
           rows="5"
           onChange={handleInputFields}
         ></textarea>
-        <div>Note: Please provide one instruction on each line</div>{" "}
+        <div>Note: Press Enter after typing each instruction.</div>{" "}
         <label htmlFor="image">
           {inEdit && image ? "Update" : "Upload"} Image (optional){" "}
         </label>
-        <input type="file" id="upload-image" />
+        <input
+          type="file"
+          accept="image/*"
+          id="upload-image"
+          onChange={handleImageInput}
+        />
         <input
           type="submit"
           className="pointer"
