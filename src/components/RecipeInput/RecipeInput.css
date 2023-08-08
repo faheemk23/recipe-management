@@ -1,0 +1,28 @@
+.recipe-input {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  overflow-y: scroll;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: #ee4e5e;
+  color: white;
+  position: relative;
+}
+
+.recipe-input-close-icon {
+  font-size: x-large;
+  position: absolute;
+  top: 5px;
+  right: 15px;
+}
+
+label {
+  margin-top: 1rem;
+}
+
+.recipe-input textarea {
+  resize: none;
+}

@@ -8,7 +8,7 @@ export const fakeFetch = (url) => {
           data: [
             {
               id: "1",
-              name: "Spaghetti Bolognese",
+              title: "Spaghetti Bolognese",
               ingredients: [
                 "500g ground beef",
                 "1 onion, diced",
@@ -30,13 +30,13 @@ export const fakeFetch = (url) => {
                 "Serve the spaghetti with the Bolognese sauce on top. Garnish with grated Parmesan cheese.",
                 "Enjoy!",
               ],
-              cuisine: "Italian",
+              description: "It is an Italian dish",
               image:
                 "https://images.unsplash.com/photo-1516001784377-938d72d1e4ab?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=MnwxfDB8MXxyYW5kb218MHx8cmVjaXBlfHx8fHx8MTY4ODIyMTA4Nw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=400",
             },
             {
               id: "2",
-              name: "Chicken Tikka Masala",
+              title: "Chicken Tikka Masala",
               ingredients: [
                 "500g chicken breast, cut into cubes",
                 "1 cup plain yogurt",
@@ -65,13 +65,13 @@ export const fakeFetch = (url) => {
                 "Garnish with fresh cilantro and serve with rice or naan bread.",
                 "Enjoy!",
               ],
-              cuisine: "Indian",
+              description: "It is an Indian dish",
               image:
                 "https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=MnwxfDB8MXxyYW5kb218MHx8cmVjaXBlfHx8fHx8MTY4ODIyMTE0OA&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=400",
             },
             {
               id: "3",
-              name: "Caesar Salad",
+              title: "Caesar Salad",
               ingredients: [
                 "1 head of romaine lettuce, chopped",
                 "1 cup croutons",
@@ -87,7 +87,7 @@ export const fakeFetch = (url) => {
                 "Serve immediately as a side dish or add grilled chicken for a complete meal.",
                 "Enjoy!",
               ],
-              cuisine: "International",
+              description: "It is an International dish",
               image:
                 "https://images.unsplash.com/photo-1487376318617-f43c7b41e2e2?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=MnwxfDB8MXxyYW5kb218MHx8cmVjaXBlfHx8fHx8MTY4ODIyMTE5OA&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=400",
             },
@@ -96,7 +96,7 @@ export const fakeFetch = (url) => {
       } else {
         reject({
           status: 404,
-          message: "Weather data not found.",
+          message: "Recipes data not found.",
         });
       }
     }, 1000);

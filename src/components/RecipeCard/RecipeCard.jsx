@@ -1,11 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { RecipesContext } from "../../contexts/RecipesContext";
 
+import { RecipesContext } from "../../contexts/RecipesContext";
+import { RecipeInput } from "../RecipeInput/RecipeInput";
 import "./RecipeCard.css";
 
 export function RecipeCard({ recipe }) {
-  const { id, name, cuisine, image } = recipe;
+  const [showEditRecipeModal, setShowEditRecipeModal] = useState(false);
+  const { id, title, description, image } = recipe;
+
   const { recipesDispatch } = useContext(RecipesContext);
   const handleBtnDelete = () => {
     recipesDispatch({ type: "delete-recipe", payload: recipe.id });
@@ -15,32 +18,50 @@ export function RecipeCard({ recipe }) {
     <article className="recipe-card">
       <img
         className="recipe-image"
-        src={image}
+        src={
+          image
+            ? image
+            : "https://res.cloudinary.com/dlzwbrjjs/image/upload/v1691516455/placeholder-rgb-color-icon-vector-32173552_vbbhay.jpg"
+        }
         alt="recipe"
         height="220px"
         width="200px"
       />
-      <h3>{name}</h3>
-      <div>Cuisine Type: {cuisine}</div>
+      <h3>{title}</h3>
       <div>
-        Ingredients:{" "}
-        <Link className="link" to={`/detail/${id}`}>
+        <i> {description}.</i>
+      </div>
+      <div>
+        <strong>Ingredients: </strong>
+
+        <Link className="link" to={`/recipedetail/${id}`}>
           View Recipe <i className="fa-solid fa-chevron-right"></i>
         </Link>
       </div>
       <div>
-        Instructions:{" "}
-        <Link className="link" to={`/detail/${id}`}>
+        <strong>Instructions: </strong>
+
+        <Link className="link" to={`/recipedetail/${id}`}>
           View Recipe <i className="fa-solid fa-chevron-right"></i>
         </Link>
       </div>
       <div className="top-right recipe-card-icons">
-        <i className="fa-solid fa-pen pointer"></i>
+        <i
+          className="fa-solid fa-pen pointer"
+          onClick={() => setShowEditRecipeModal(true)}
+        ></i>
         <i
           className="fa-regular fa-trash-can pointer"
           onClick={() => handleBtnDelete()}
         ></i>
       </div>
+      {showEditRecipeModal && (
+        <RecipeInput
+          recipe={recipe}
+          setShowEditRecipeModal={setShowEditRecipeModal}
+          inEdit
+        />
+      )}
     </article>
   );
 }

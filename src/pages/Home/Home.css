@@ -1,8 +1,13 @@
+.home-page {
+  padding: 2rem;
+}
+
 .recipes-container {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
-  min-height: 380px;
+  /* min-height: 380px; */
+  margin-top: 2rem;
 }
 
 .add-recipe-icon {

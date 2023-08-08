@@ -3,3 +3,13 @@
 .pointer {
   cursor: pointer;
 }
+
+.modal-container {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0 0 0 0;
+}
