@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
 import { RecipeDetail } from "./pages/RecipeDetail/RecipeDetail";
 
@@ -13,19 +13,24 @@ import { Login } from "./pages/Login/Login";
 function App() {
   const { loading, loggedIn } = useContext(RecipesContext);
 
+  const navigate = useNavigate();
+  // useEffect(()=>{
+  //   const
+  //   if(!loggedIn){
+  //     navigate("/login")
+  //   }
+  // },[])
+
   return (
     <div className="App">
-      {loggedIn && (
-        <>
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/recipedetail/:recipeId" element={<RecipeDetail />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </>
-      )}
-      {!loggedIn && <Login />}
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/recipedetail/:recipeId" element={<RecipeDetail />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+      {/* {!loggedIn && <Login />} */}
       {!loading && <Toaster />}
     </div>
   );
