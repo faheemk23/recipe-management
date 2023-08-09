@@ -4,6 +4,13 @@ export function RecipeDetailCard({ recipe }) {
   const { id, title, ingredients, instructions, description, image } =
     recipe ?? {};
 
+  const nonEmptyIngredients = ingredients.filter(
+    (ingredient) => ingredient !== ""
+  );
+  const nonEmptyInstructions = instructions.filter(
+    (instruction) => instruction !== ""
+  );
+
   return (
     <div>
       <h1 className="center">{title} </h1>
@@ -23,12 +30,12 @@ export function RecipeDetailCard({ recipe }) {
           <h3>{description}</h3>
           <div>
             <strong>Ingredients : </strong>
-            {ingredients?.join(", ")}
+            {nonEmptyIngredients?.join(", ")}
           </div>
           <div>
             <h4>Instructions</h4>
             <div>
-              {instructions?.map((instruction, index) => (
+              {nonEmptyInstructions?.map((instruction, index) => (
                 <div key={instruction}>
                   {index + 1}) {instruction}
                 </div>
