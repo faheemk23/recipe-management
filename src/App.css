@@ -21,3 +21,11 @@
   position: fixed;
   inset: 0 0 0 0;
 }
+
+.center-of-app {
+  position: fixed;
+  inset: 0 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

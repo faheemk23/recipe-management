@@ -30,7 +30,12 @@ function App() {
         </>
       )}
       {error && <Error />}
-      {isLoading && <Loader />}
+      {isLoading && (
+        <div className="center-of-app">
+          {" "}
+          <Loader />
+        </div>
+      )}
 
       {!isAuthenticated && !isLoading && <Login />}
       {!loading && <Toaster />}
