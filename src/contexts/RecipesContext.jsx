@@ -7,7 +7,6 @@ export const RecipesContext = createContext();
 
 export const RecipesProvider = ({ children }) => {
   const [recipesState, recipesDispatch] = useReducer(recipesReducer, []);
-  const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,9 +23,7 @@ export const RecipesProvider = ({ children }) => {
   }, []);
 
   return (
-    <RecipesContext.Provider
-      value={{ recipesState, recipesDispatch, loading, loggedIn, setLoggedIn }}
-    >
+    <RecipesContext.Provider value={{ recipesState, recipesDispatch, loading }}>
       {children}
     </RecipesContext.Provider>
   );
